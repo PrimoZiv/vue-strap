@@ -69,7 +69,11 @@ import coerceBoolean from './utils/coerceBoolean.js'
     },
     watch: {
       activeIndex(newVal, oldVal) {
-        newVal > oldVal ? this.slide('left', newVal, oldVal) : this.slide('right', newVal, oldVal)
+        if (newVal - oldVal === -1 || newVal - oldVal > 1) {
+          this.slide('right', newVal, oldVal)
+        } else {
+          this.slide('left', newVal, oldVal)
+        }
       }
     },
     methods: {
